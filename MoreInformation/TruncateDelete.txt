@@ -1,0 +1,16 @@
+Difference between DELETE, TRUNCATE and DROP
+
+    DELETE : used to delete particular row with where condition and you can all delete all the rows from the given table.
+    TRUNCATE: used to truncate all the rows, which can not even be restored at all, this actions deletes data in Hive meta store.
+Removes all rows from a table or partition(s). Currently target table should be native/managed table or exception will be thrown. User can specify partial partition_spec for truncating multiple partitions at once and omitting partition_spec will truncate all partitions in the table.
+    DROP: it drops the table along with the data associated with Hive Meta store.
+
+Let us practice all the above mentioned one by one.
+TRUNCATE
+
+If we want to remove particular row from Hive meta store Table we use DELETE but if we want to delete all the rows from HIVE table we can use TRUNCATE.
+
+Note:
+
+    if you had created a TABLE with EXTERNAL keyword then you can NOT remove all the rows because all data resides outside of Hive Meta store.
+    Truncate also removes all the values inside table.

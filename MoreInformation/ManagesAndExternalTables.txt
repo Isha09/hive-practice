@@ -1,0 +1,41 @@
+Managed and External Tables in hive:
+Managed table
+
+Managed table is also called as Internal table. This is the default table in Hive. When we create a table in Hive without specifying it as a managed or external, by default we will get a Managed table.
+If we create a table as a managed table, the table will be created in a specific location in HDFS.
+By default the table data will be created in /usr/hive/warehouse directory of HDFS.
+If we delete a Managed table, both the table data and meta data for that table will be deleted from the HDFS.
+
+Creating Mnagaed Table:
+create table employee(Name String, Sal Int) row format delimited fields terminated by ',';
+
+to check the details of the table:
+describe formatted table_name;
+
+loading data:
+load data local inpath 'path of the file' into table employee;
+
+Check the contents of the table in HDFS by using the below command:
+adoop dfs -ls hdfs://localhost:9000/user/hive/warehouse/employee
+
+Drop table:
+drop table employee;
+Note: contenets will also be deleted.
+
+EXTERNAL TABLE
+
+External table is created for external use as when the data is used outside Hive. Whenever we want to delete the table’s metadata and want to keep the table’s data as it is, we use External table. External table only deletes the schema of the table.
+Creating external table:
+create external table employee(Name String, Sal Int) row format delimited fields terminated by ',';
+Note: here when we drop external table the data or contents doesn't get deleted but only schema gets deleted.
+
+When to use External and Managed table
+Managed table
+    Data is temporary
+    Hive to Manage the table data completely not allowing any external source to use the table
+    Don’t want data after deletion
+External table
+    The data is also used outside of Hive. For example, the data files are read and processed by an existing program that doesn’t lock the files
+    Hive should not own data and control settings, dirs, etc., you have another program or process that will do those things
+    You are not creating table based on existing table (AS SELECT)
+    Can create table back and with the same schema and point the location of the data

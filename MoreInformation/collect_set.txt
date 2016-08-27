@@ -1,0 +1,7 @@
+collect_set(col) 	Returns a set of objects with duplicate elements eliminated
+
+COLLECT_SET returns an array, with which you can then concatenate the entries into a single comma-separated value using CONCAT_WS:
+
+elect serial_num, concat_ws(",", collect_set(customer_lastName)) as concatenate_lastNames from External_Table group by serial_num
+www.ibm.com/developerworks/library/bd-hiveanalyze/
+https://hadoopist.wordpress.com/2015/01/03/creating-collect-set-using-hive-analytical-functions/
