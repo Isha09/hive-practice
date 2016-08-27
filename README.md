@@ -88,3 +88,12 @@ There are three ways to describe a table in Hive.
 1) To see table primary info of Hive table, use describe table_name; command
 2) To see more detailed information about the table, use describe extended table_name; command
 3) To see code in a clean manner use describe formatted table_name; command to see all information. also describe all details in a clean manner.
+
+11. What does collect_set standard aggregate function does?
+collect_set(col) 	Returns a set of objects with duplicate elements eliminated
+
+COLLECT_SET returns an array, with which you can then concatenate the entries into a single comma-separated value using CONCAT_WS:
+
+elect serial_num, concat_ws(",", collect_set(customer_lastName)) as concatenate_lastNames from External_Table group by serial_num
+www.ibm.com/developerworks/library/bd-hiveanalyze/
+https://hadoopist.wordpress.com/2015/01/03/creating-collect-set-using-hive-analytical-functions/
