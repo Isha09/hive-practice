@@ -35,65 +35,12 @@ timestamp - as explained before
 
 8. Find which users sent smses but did not make calls (can you use NOT IN, how to replace NOT IN by JOINS)
 
-9. What is the difference between managed and external tables? When to use what?
-Managed and External Tables in hive:
-Managed table
-
-Managed table is also called as Internal table. This is the default table in Hive. When we create a table in Hive without specifying it as a managed or external, by default we will get a Managed table.
-If we create a table as a managed table, the table will be created in a specific location in HDFS.
-By default the table data will be created in /usr/hive/warehouse directory of HDFS.
-If we delete a Managed table, both the table data and meta data for that table will be deleted from the HDFS.
-
-Creating Mnagaed Table:
-create table employee(Name String, Sal Int) row format delimited fields terminated by ',';
-
-to check the details of the table:
-describe formatted table_name;
-
-loading data:
-load data local inpath 'path of the file' into table employee;
-
-Check the contents of the table in HDFS by using the below command:
-adoop dfs -ls hdfs://localhost:9000/user/hive/warehouse/employee
-
-Drop table:
-drop table employee;
-Note: contenets will also be deleted.
-
-EXTERNAL TABLE
-
-External table is created for external use as when the data is used outside Hive. Whenever we want to delete the table’s metadata and want to keep the table’s data as it is, we use External table. External table only deletes the schema of the table.
-Creating external table:
-create external table employee(Name String, Sal Int) row format delimited fields terminated by ',';
-Note: here when we drop external table the data or contents doesn't get deleted but only schema gets deleted.
-
-When to use External and Managed table
-Managed table
-    Data is temporary
-    Hive to Manage the table data completely not allowing any external source to use the table
-    Don’t want data after deletion
-External table
-    The data is also used outside of Hive. For example, the data files are read and processed by an existing program that doesn’t lock the files
-    Hive should not own data and control settings, dirs, etc., you have another program or process that will do those things
-    You are not creating table based on existing table (AS SELECT)
-    Can create table back and with the same schema and point the location of the data
+9. What is the difference between managed and external tables? When to use what? - added in the folder MoreInformation.
     
-10. What does describe function do?
-To see table definition in Hive, run command
-    describe <table name>;
-To see more detailed information about the table, run command
-    describe extended <tablename>;
-There are three ways to describe a table in Hive.
+10. What does describe function do? - added in the folder MoreInformation.
 
-1) To see table primary info of Hive table, use describe table_name; command
-2) To see more detailed information about the table, use describe extended table_name; command
-3) To see code in a clean manner use describe formatted table_name; command to see all information. also describe all details in a clean manner.
+11. What does collect_set standard aggregate function does? - added in the folder MoreInformation.
 
-11. What does collect_set standard aggregate function does?
-collect_set(col) 	Returns a set of objects with duplicate elements eliminated
+12. Types of File formats in hive - added in the folder MoreInformation.
 
-COLLECT_SET returns an array, with which you can then concatenate the entries into a single comma-separated value using CONCAT_WS:
-
-elect serial_num, concat_ws(",", collect_set(customer_lastName)) as concatenate_lastNames from External_Table group by serial_num
-www.ibm.com/developerworks/library/bd-hiveanalyze/
-https://hadoopist.wordpress.com/2015/01/03/creating-collect-set-using-hive-analytical-functions/
+13. What is the difference between truncating a table and deleting all records from it in hive? - added in the folder MoreInformation.
