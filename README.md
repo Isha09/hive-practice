@@ -77,3 +77,14 @@ External table
     Hive should not own data and control settings, dirs, etc., you have another program or process that will do those things
     You are not creating table based on existing table (AS SELECT)
     Can create table back and with the same schema and point the location of the data
+    
+10. What does describe function do?
+To see table definition in Hive, run command
+    describe <table name>;
+To see more detailed information about the table, run command
+    describe extended <tablename>;
+There are three ways to describe a table in Hive.
+
+1) To see table primary info of Hive table, use describe table_name; command
+2) To see more detailed information about the table, use describe extended table_name; command
+3) To see code in a clean manner use describe formatted table_name; command to see all information. also describe all details in a clean manner.
